@@ -36,12 +36,6 @@ public class HomeController {
     	return "admin";
     }
     
-    @GetMapping("/login")
-    public String login(Model model, @RequestParam(required = false) String error) {
-    	model.addAttribute("loginError", error);
-    	return "login";
-    }
-    
     @GetMapping("/logout")
     public String logout() {
     	return "logout";
@@ -49,20 +43,19 @@ public class HomeController {
     
     @GetMapping("/ott/sent")
     String ottSent() {
-    	IO.println("ottSent");
         return "ott-template";
     }
     
     @GetMapping("/ott/login")
-    String ottLoginSent() {
-    	IO.println("ottLoginSent");
+    String ottLoginSent(Model model, @RequestParam(required = false) String error) {
+    	model.addAttribute("loginError", error);
         return "ott-login-template";
     }
     
-    @GetMapping("/ott/login-processing-url")
-    String ottloginProcessingUrl() {
-    	IO.println("ottloginProcessingUrl");
-        return "ott-login-processing-url-template";
+    @GetMapping("/login/ott")
+    public String loginottSubmitPage(Model model, @RequestParam String token) {
+    	model.addAttribute("token", token);
+        return "my-ott-submit";
     }
         
 }

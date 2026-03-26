@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org/" xmlns:sec="http://www.thymeleaf.org/extras/spring-security/">
+<head>
+<meta charset="UTF-8">
+	<title>Insert title here</title>
+	<link href="/main.css" rel="stylesheet" />
+</head>
+<body>
+<div class="container">
+<h1 class="center">Spring Boot Tutorial</h1>
+      <form class="login-form" th:action="@{/login/ott}" method="post">
+        <h2>Please input the token</h2>
+        <p>
+          <label for="token" class="screenreader">Token</label>
+          <input type="text" id="token" name="token" th:value="${token}" placeholder="Token" required autofocus="autofocus"/>
+        </p>
+        <button class="primary" type="submit">Sign in</button>
+      </form>
+    </div>
+</body>
+</html>

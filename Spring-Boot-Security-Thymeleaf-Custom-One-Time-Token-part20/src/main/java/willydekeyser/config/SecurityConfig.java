@@ -13,22 +13,21 @@ public class SecurityConfig {
     @Bean
     SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http
-                //.httpBasic(Customizer.withDefaults())
-                //.formLogin(login -> login
-                //		.loginPage("/login")
-                //        .defaultSuccessUrl("/", true)
-                //        .permitAll())
                 .logout(logout -> logout
                 		.logoutUrl("/logout")
                         .logoutSuccessUrl("/")
                         .deleteCookies("JSESSIONID")
                         .permitAll())
                 .oneTimeTokenLogin(ott -> ott
-                		//.loginPage("/ott/login")
-                		.loginProcessingUrl("/ott/login-processing-url"))
+                		.loginPage("/ott/login")
+                		.defaultSuccessUrl("/", true)
+                		.showDefaultSubmitPage(false)
+                		.loginProcessingUrl("/login/ott")
+                		.permitAll()
+                		)
                 .authorizeHttpRequests((authorize) -> authorize
                         .requestMatchers("/", "/public", "/main.css", "/favicon.ico").permitAll()
-                        .requestMatchers("/login/ott", "/ott/**").permitAll()
+                        .requestMatchers("/login/ott", "/ott/sent", "/my-ott-submit").permitAll()
                         .requestMatchers("/user/**").hasRole("USER")
                         .requestMatchers("/admin/**").hasRole("ADMIN")
                         .anyRequest().authenticated()
