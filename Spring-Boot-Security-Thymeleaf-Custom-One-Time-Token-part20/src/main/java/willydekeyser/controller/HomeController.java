@@ -49,7 +49,20 @@ public class HomeController {
     
     @GetMapping("/ott/sent")
     String ottSent() {
+    	IO.println("ottSent");
         return "ott-template";
+    }
+    
+    @GetMapping("/ott/login")
+    String ottLoginSent() {
+    	IO.println("ottLoginSent");
+        return "ott-login-template";
+    }
+    
+    @GetMapping("/ott/login-processing-url")
+    String ottloginProcessingUrl() {
+    	IO.println("ottloginProcessingUrl");
+        return "ott-login-processing-url-template";
     }
         
 }
