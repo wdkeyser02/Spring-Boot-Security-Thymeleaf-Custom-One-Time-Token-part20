@@ -53,7 +53,7 @@ public class HomeController {
     }
     
     @GetMapping("/login/ott")
-    public String loginottSubmitPage(Model model, @RequestParam String token) {
+    public String loginottSubmitPage(Model model, @RequestParam(required = false) String token) {
     	model.addAttribute("token", token);
         return "my-ott-submit";
     }
